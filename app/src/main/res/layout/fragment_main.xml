@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:onClick="onClick"
-        android:text="@string/button"
+        android:text="@string/viewData"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,5 +40,17 @@
         app:layout_constraintStart_toEndOf="@id/city_view"
         app:layout_constraintTop_toBottomOf="@id/button"
         tools:text="TextView" />
+
+    <TextView
+        android:id="@+id/cities_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/temperature_view"
+        tools:text="TextView"
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

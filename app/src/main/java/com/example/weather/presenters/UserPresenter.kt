@@ -4,5 +4,6 @@ interface UserPresenter {
     fun onStart()
     fun onStop()
     fun onUserAction()
+    fun displayAction()
 
 }

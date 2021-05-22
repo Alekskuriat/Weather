@@ -1,6 +1,5 @@
 package com.example.weather.ui
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextSwitcher
 import android.widget.TextView
 import android.widget.Toast
 import com.example.weather.R
 import com.example.weather.presenters.UserPresenter
 import com.example.weather.presenters.UserPresenterImpl
 import com.example.weather.presenters.UserView
+import java.lang.StringBuilder
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -26,7 +25,7 @@ class MainFragment : Fragment(R.layout.fragment_main), UserView, View.OnClickLis
     var button: Button? = null
     var cityView: TextView? = null
     var temperatureView: TextView? = null
-
+    var citiesView: TextView? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -54,12 +53,12 @@ class MainFragment : Fragment(R.layout.fragment_main), UserView, View.OnClickLis
         button = rootView.findViewById(R.id.button)
         cityView = rootView.findViewById(R.id.city_view)
         temperatureView = rootView.findViewById(R.id.temperature_view)
+        citiesView = rootView.findViewById(R.id.cities_view)
         button?.setOnClickListener(this)
 
 
         return rootView
     }
-
 
     companion object {
         @JvmStatic
@@ -80,15 +79,18 @@ class MainFragment : Fragment(R.layout.fragment_main), UserView, View.OnClickLis
         Toast.makeText(requireContext(), "Старт приложения", Toast.LENGTH_LONG).show()
     }
 
-    override fun displayGivenInTextView(city: String, temperature: Double) {
+    override fun displayGivenInTextView(city: String, temperature: String) {
         cityView?.text = city
-        var temperatureTmp = temperature.toBigDecimal().toPlainString()
-        temperatureView?.text = temperatureTmp.plus(" C")
+        temperatureView?.text = temperature
     }
 
+    override fun displayListOfCities(str: StringBuilder) {
+        citiesView?.text = str
+    }
 
     override fun onClick(v: View?) {
         presenter?.onUserAction()
+        presenter?.displayAction()
     }
 
 
